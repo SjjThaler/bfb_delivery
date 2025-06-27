@@ -1,4 +1,4 @@
-"""Delete a plan from Circuit."""
+"""Retrieve a plan from Circuit."""
 
 import logging
 from time import sleep
@@ -18,10 +18,10 @@ logger = logging.getLogger(__name__)
 
 @click.command()
 @click.option(
-    "--plan-id", type=str, required=True, help="The plan ID to be deleted. As 'plans/{id}'."
+    "--plan-id", type=str, required=True, help="The plan ID to be retrieved. As 'plans/{id}'."
 )
 def main(plan_id: str, wait_seconds: float = RateLimits.WRITE_SECONDS) -> dict:
-    """Delete a plan from Circuit."""
+    """Retrieve a plan from Circuit."""
     response = requests.get(
         url=f"https://api.getcircuit.com/public/v0.2b/{plan_id}",
         auth=HTTPBasicAuth(get_circuit_key(), ""),
